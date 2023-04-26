@@ -1,5 +1,6 @@
 package com.example.moviesvapp.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,8 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.example.moviesvapp.model.MoviesViewModel
-import com.example.musicplayercompose.ui.theme.MyApplicationTheme
+import com.example.moviesvapp.viewmodel.MoviesViewModel
+import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,13 +46,18 @@ fun MoviesScreen(viewModel: MoviesViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 TextField(
+
                     value = searchQuery,
                     onValueChange = { searchQuery = it },
                     label = { Text("Search movies") },
                     modifier = Modifier.fillMaxWidth(),
+                    maxLines = 1,
                     trailingIcon = {
                         IconButton(
-                            onClick = { viewModel.searchMovies(searchQuery.text) }
+                            onClick = {
+                                Log.d("MoviesViewModel", "Search Icon Clicked")
+
+                                viewModel.searchMovies(searchQuery.text) }
                         ) {
                             Icon(Icons.Default.Search, contentDescription = "Search Icon")
                         }

@@ -1,8 +1,10 @@
-package com.example.moviesvapp.model
+package com.example.moviesvapp.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.model.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,11 +19,11 @@ class MoviesViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val apiKey = "458ec391"
-                val trimmedQuery = query.trim() // Trim the query
+                val trimmedQuery = query.trim()
                 val response = omdbApi.searchMovies(apiKey, trimmedQuery)
                 withContext(Dispatchers.Main) {
-                    if (response.Response == "True") {
-                        movies.value = response.Search
+                    if (response.response == "True") {
+                        movies.value = response.search
                         isLoading.value = false
                     } else {
                         movies.value = emptyList()

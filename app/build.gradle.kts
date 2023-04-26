@@ -89,6 +89,7 @@ dependencies {
     val navVersion = "2.5.3"
 
     implementation("androidx.navigation:navigation-compose:$navVersion")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
 
 
