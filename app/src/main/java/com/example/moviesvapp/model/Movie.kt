@@ -12,5 +12,11 @@ data class Movie(
     @SerializedName("Type")
     val type: String,
     @SerializedName("Poster")
-    val poster: String
+    val poster: String,
+    @SerializedName("Plot")
+    val plot: String ,
+    @SerializedName("Director")
+    val director: String
+
+
 )

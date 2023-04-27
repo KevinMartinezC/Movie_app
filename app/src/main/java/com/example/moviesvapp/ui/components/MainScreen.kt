@@ -59,7 +59,11 @@ fun MainScreen(onLogout: () -> Unit, username: String?, lastLoginDate: String?) 
     MaterialTheme {
         ModalNavigationDrawer(
             drawerContent = {
-                LogoutDrawer(onLogout = onLogout, username = username, lastLoginDate = lastLoginDate)
+                LogoutDrawer(
+                    onLogout = onLogout,
+                    username = username,
+                    lastLoginDate = lastLoginDate
+                )
             },
             modifier = Modifier,
             drawerState = drawerState,
@@ -114,7 +118,12 @@ fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?
 
                 if (username != null && lastLoginDate != null) {
                     NavigationDrawerItem(
-                        icon = { Icon(Icons.Default.AccountCircle, contentDescription = "User icon") },
+                        icon = {
+                            Icon(
+                                Icons.Default.AccountCircle,
+                                contentDescription = "User icon"
+                            )
+                        },
                         label = { Text(text = "User: $username") },
                         selected = false,
                         onClick = {},
@@ -122,7 +131,12 @@ fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     NavigationDrawerItem(
-                        icon = { Icon(Icons.Default.DateRange, contentDescription = "Last login date icon") },
+                        icon = {
+                            Icon(
+                                Icons.Default.DateRange,
+                                contentDescription = "Last login date icon"
+                            )
+                        },
                         label = { Text(text = "Date: $lastLoginDate") },
                         selected = false,
                         onClick = {},
@@ -141,10 +155,6 @@ fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?
         }
     }
 }
-
-
-
-
 
 @Composable
 fun RowScope.AddItem(
@@ -174,5 +184,5 @@ fun RowScope.AddItem(
             }
         },
         alwaysShowLabel = false,
-        )
+    )
 }
