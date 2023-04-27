@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Movie SV APP</string>
+    <string name="invalid__key_please_check_your_password">Invalid API key. Please check your Password and try again.</string>
+    <string name="logging_in">Logging in…</string>
+    <string name="please_enter_your_username_and_password">Please enter your username and password</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="navigation_icon">Navigation Icon</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="search_movies">Search movies</string>
 </resources>

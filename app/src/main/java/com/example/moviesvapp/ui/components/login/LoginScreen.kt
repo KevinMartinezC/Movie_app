@@ -1,6 +1,5 @@
-package com.example.moviesvapp.components
+package com.example.moviesvapp.ui.components.login
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,21 +14,23 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.moviesvapp.R
 import com.example.moviesvapp.model.Resource
-import com.example.moviesvapp.viewmodel.LoginViewModel
+import com.example.moviesvapp.ui.components.login.viewmodel.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(viewModel: LoginViewModel, onLoginSuccess: (String) -> Unit) {
+fun LoginScreen(viewModel: LoginViewModel, onLoginSuccess: (String, String) -> Unit) {
+
     val username = remember { mutableStateOf("") }
     val apiKey = remember { mutableStateOf("") }
-    val loginStatus by viewModel.loginStatus.collectAsState()
+    val loginStatus = viewModel.loginStatus.collectAsState().value
 
     Column(
         modifier = Modifier
@@ -41,49 +42,42 @@ fun LoginScreen(viewModel: LoginViewModel, onLoginSuccess: (String) -> Unit) {
         TextField(
             value = username.value,
             onValueChange = { username.value = it },
-            label = { Text("Username") },
+            label = { Text(stringResource(R.string.username)) },
             singleLine = true
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
             value = apiKey.value,
             onValueChange = { apiKey.value = it },
-            label = { Text("API Key") },
+            label = { Text(stringResource(R.string.password)) },
             singleLine = true
         )
         Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = {
-            viewModel.login(username = username.value, apiKey= apiKey.value) }) {
+            viewModel.login(username = username.value, apiKey = apiKey.value)
+        }) {
             Text("Login")
         }
-
         when (loginStatus) {
-            is Resource.Loading -> Text("Logging in...")
+            is Resource.Loading -> Text(stringResource(R.string.logging_in))
             is Resource.Error -> {
-                val errorStatus = loginStatus as Resource.Error
-                val userFriendlyMessage = when (errorStatus.message) {
-                    "Invalid API key" -> "Invalid API key. Please check your Password and try again."
-                    else -> "An error occurred. Please try again later."
-                }
                 Text(
-                    userFriendlyMessage,
+                    stringResource(R.string.invalid__key_please_check_your_password),
                     color = MaterialTheme.colorScheme.error,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
 
-
             is Resource.Success -> {
-                val successStatus = loginStatus as Resource.Success
+                val (loggedInUsername, loggedInApiKey) = loginStatus.data
                 LaunchedEffect(Unit) {
-                    onLoginSuccess(successStatus.data)
+                    onLoginSuccess(loggedInUsername, loggedInApiKey)
                 }
             }
 
             is Resource.Idle -> {
                 Text(
-                    "Please enter your username and password",
-
+                    stringResource(R.string.please_enter_your_username_and_password),
                     color = MaterialTheme.colorScheme.onBackground,
                     style = MaterialTheme.typography.bodyMedium
                 )

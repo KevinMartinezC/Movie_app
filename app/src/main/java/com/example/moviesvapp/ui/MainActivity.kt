@@ -2,17 +2,19 @@ package com.example.moviesvapp.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.example.moviesvapp.components.LoginScreen
-import com.example.moviesvapp.components.MainScreen
-import com.example.moviesvapp.model.getApiKey
+import com.example.moviesvapp.ui.components.login.LoginScreen
+import com.example.moviesvapp.ui.components.MainScreen
+import com.example.moviesvapp.model.getUsername
 import com.example.moviesvapp.model.saveApiKey
+import com.example.moviesvapp.model.saveUsername
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
-import com.example.moviesvapp.viewmodel.LoginViewModel
+import com.example.moviesvapp.ui.components.login.viewmodel.LoginViewModel
 
 
 class MainActivity : ComponentActivity() {
@@ -20,15 +22,19 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MyApplicationTheme {
                 val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-                val loggedInApiKey = remember { mutableStateOf(sharedPreferences.getApiKey()) }
+                val loggedInUsername = remember { mutableStateOf(sharedPreferences.getUsername()) }
+                Log.d("MainActivity", "Retrieved username from SharedPreferences: ${loggedInUsername.value}")
 
-                if (loggedInApiKey.value == null) {
-                    LoginScreen(viewModel) { apiKey ->
-                        loggedInApiKey.value = apiKey
+                if (loggedInUsername.value == null) {
+                    LoginScreen(viewModel) { username, apiKey ->
+                        loggedInUsername.value = username
+                        sharedPreferences.saveUsername(username)
                         sharedPreferences.saveApiKey(apiKey)
+                        Log.d("MainActivity", "Saved username and API key to SharedPreferences: $username, $apiKey")
                     }
                 } else {
                     MainScreen()

@@ -1,6 +1,5 @@
-package com.example.moviesvapp.components
+package com.example.moviesvapp.ui.components.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,14 +24,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.example.moviesvapp.viewmodel.MoviesViewModel
+import com.example.moviesvapp.R
+import com.example.moviesvapp.ui.components.home.viewmodel.MoviesViewModel
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoviesScreen(viewModel: MoviesViewModel) {
+
     val movies by viewModel.movies
     val isLoading by viewModel.isLoading
     var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
@@ -46,20 +48,20 @@ fun MoviesScreen(viewModel: MoviesViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 TextField(
-
                     value = searchQuery,
                     onValueChange = { searchQuery = it },
-                    label = { Text("Search movies") },
+                    label = { Text(stringResource(R.string.search_movies)) },
                     modifier = Modifier.fillMaxWidth(),
                     maxLines = 1,
                     trailingIcon = {
                         IconButton(
                             onClick = {
-                                Log.d("MoviesViewModel", "Search Icon Clicked")
-
                                 viewModel.searchMovies(searchQuery.text) }
                         ) {
-                            Icon(Icons.Default.Search, contentDescription = "Search Icon")
+                            Icon(
+                                Icons.Default.Search,
+                                contentDescription = stringResource(R.string.search_icon)
+                            )
                         }
                     }
                 )

@@ -1,4 +1,4 @@
-package com.example.moviesvapp.components
+package com.example.moviesvapp.ui.components
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.RowScope
@@ -10,14 +10,16 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.moviesvapp.components.navigation.BottomBar
-import com.example.moviesvapp.components.navigation.BottomNavGraph
-import com.example.moviesvapp.components.navigation.BottomNavItem
+import com.example.moviesvapp.R
+import com.example.moviesvapp.ui.components.navigation.BottomBar
+import com.example.moviesvapp.ui.components.navigation.BottomNavGraph
+import com.example.moviesvapp.ui.components.navigation.BottomNavItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -44,7 +46,7 @@ fun RowScope.AddItem(
         icon = {
             Icon(
                 imageVector = screen.icon,
-                contentDescription = "Navigation Icon",
+                contentDescription = stringResource(R.string.navigation_icon),
                 tint = MaterialTheme.colorScheme.primary
 
             )

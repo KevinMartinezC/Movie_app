@@ -1,11 +1,11 @@
-package com.example.moviesvapp.components.navigation
+package com.example.moviesvapp.ui.components.navigation
 
 import androidx.compose.material3.NavigationBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.moviesvapp.components.AddItem
+import com.example.moviesvapp.ui.components.AddItem
 
 @Composable
 fun BottomBar(navController: NavHostController) {

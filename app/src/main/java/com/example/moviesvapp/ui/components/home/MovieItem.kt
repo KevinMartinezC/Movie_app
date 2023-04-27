@@ -1,4 +1,4 @@
-package com.example.moviesvapp.components
+package com.example.moviesvapp.ui.components.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -13,8 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.example.moviesvapp.R
 import com.example.moviesvapp.model.Movie
 
 @Composable
@@ -28,7 +30,7 @@ fun MovieItem(movie: Movie) {
         val painter = rememberAsyncImagePainter(model = movie.poster)
         Image(
             painter = painter,
-            contentDescription = "Movie Poster",
+            contentDescription = stringResource(R.string.movie_poster),
             modifier = Modifier
                 .height(100.dp)
                 .width(75.dp)
