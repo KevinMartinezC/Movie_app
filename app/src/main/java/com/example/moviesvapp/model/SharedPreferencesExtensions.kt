@@ -1,6 +1,10 @@
 package com.example.moviesvapp.model
 
 import android.content.SharedPreferences
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 fun SharedPreferences.saveUsername(username: String) {
@@ -25,4 +29,23 @@ fun SharedPreferences.clearUsername() {
 
 fun SharedPreferences.clearApiKey() {
     edit().remove("API_KEY").apply()
+}
+
+fun SharedPreferences.saveLastLoginDate(date: String) {
+    edit().putString("LAST_LOGIN_DATE", date).apply()
+}
+
+fun SharedPreferences.getLastLoginDate(): String? {
+    return getString("LAST_LOGIN_DATE", null)
+}
+
+fun SharedPreferences.clearLastLoginDate() {
+    edit().remove("LAST_LOGIN_DATE").apply()
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun getCurrentDateTime(): String {
+    val currentDateTime = LocalDateTime.now()
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    return currentDateTime.format(formatter)
 }

@@ -18,6 +18,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,7 +36,7 @@ import com.example.moviesvapp.ui.theme.MyApplicationTheme
 @Composable
 fun MoviesScreen(viewModel: MoviesViewModel) {
 
-    val movies by viewModel.movies
+    val movies by viewModel.movies.collectAsState()
     val isLoading by viewModel.isLoading
     var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
 

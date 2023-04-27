@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -45,14 +47,16 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(onLogout: () -> Unit) {
+fun MainScreen(onLogout: () -> Unit, username: String?, lastLoginDate: String?) {
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
     MaterialTheme {
         ModalNavigationDrawer(
-            drawerContent = { LogoutDrawer(onLogout = onLogout) },
+            drawerContent = {
+                LogoutDrawer(onLogout = onLogout, username = username, lastLoginDate = lastLoginDate)
+            },
             modifier = Modifier,
             drawerState = drawerState,
             scrimColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.32f),
@@ -70,6 +74,7 @@ fun MainScreen(onLogout: () -> Unit) {
     }
 }
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(onLogoutButtonClick: () -> Unit) {
@@ -85,34 +90,43 @@ fun AppTopBar(onLogoutButtonClick: () -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LogoutDrawer(onLogout: () -> Unit) {
+fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?) {
     ModalDrawerSheet {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                NavigationDrawerItem(
+                if (username != null && lastLoginDate != null) {
+                    Text(text = "User: $username")
+                    Text(text = "Last Login: $lastLoginDate")
+                }
 
+                Spacer(modifier = Modifier.height(16.dp))
+
+                NavigationDrawerItem(
                     icon = { Icon(Icons.Default.ExitToApp, contentDescription = "Logout") },
                     label = {
-                        Button(
-                            onClick = onLogout,
-                            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
-                            content = { Text("Logout") }
-                        )
+                        Text(text = "User: $username")
                     },
                     selected = false,
-                    onClick = onLogout,
+                    onClick = {},
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                )
+                Button(
+                    onClick = onLogout,
+                    modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
+                    content = { Text("Logout") }
                 )
             }
         }
     }
 }
+
+
+
 
 
 @Composable
