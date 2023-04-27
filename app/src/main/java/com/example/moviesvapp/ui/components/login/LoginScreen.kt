@@ -56,7 +56,7 @@ fun LoginScreen(viewModel: LoginViewModel, onLoginSuccess: (String, String) -> U
         Button(onClick = {
             viewModel.login(username = username.value, apiKey = apiKey.value)
         }) {
-            Text("Login")
+            Text(stringResource(R.string.login))
         }
         when (loginStatus) {
             is Resource.Loading -> Text(stringResource(R.string.logging_in))

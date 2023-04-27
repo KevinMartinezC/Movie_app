@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 
 class LoginViewModel : ViewModel() {
-    private val loginStatusMutable = MutableStateFlow<Resource<Pair<String, String>>>(Resource.Idle())
+    private val loginStatusMutable = MutableStateFlow<Resource<Pair<String, String>>>(Resource.Idle)
     val loginStatus: StateFlow<Resource<Pair<String, String>>> = loginStatusMutable
 
     fun login(username: String, apiKey: String) {

@@ -44,7 +44,7 @@ fun MoviesScreen(viewModel: MoviesViewModel) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(56.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 TextField(
@@ -70,7 +70,9 @@ fun MoviesScreen(viewModel: MoviesViewModel) {
             if (isLoading) {
                 CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
             } else {
-                LazyColumn {
+                LazyColumn(
+                    modifier = Modifier.padding(bottom = 56.dp) // Add padding to avoid content being hidden behind the bottom bar
+                ) {
                     items(movies.size) { index ->
                         val movie = movies[index]
                         MovieItem(movie)

@@ -8,6 +8,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.example.moviesvapp.model.clearApiKey
+import com.example.moviesvapp.model.clearUsername
 import com.example.moviesvapp.ui.components.login.LoginScreen
 import com.example.moviesvapp.ui.components.MainScreen
 import com.example.moviesvapp.model.getUsername
@@ -36,8 +38,13 @@ class MainActivity : ComponentActivity() {
                         sharedPreferences.saveApiKey(apiKey)
                         Log.d("MainActivity", "Saved username and API key to SharedPreferences: $username, $apiKey")
                     }
-                } else {
-                    MainScreen()
+                }else {
+                    MainScreen(onLogout = {
+                        loggedInUsername.value = null
+                        sharedPreferences.clearUsername()
+                        sharedPreferences.clearApiKey()
+                        Log.d("MainActivity", "Cleared username and API key from SharedPreferences")
+                    })
                 }
             }
         }

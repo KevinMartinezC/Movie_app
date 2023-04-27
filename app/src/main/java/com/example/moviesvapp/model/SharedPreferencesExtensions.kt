@@ -18,3 +18,11 @@ fun SharedPreferences.saveApiKey(apiKey: String) {
 fun SharedPreferences.getApiKey(): String? {
     return getString("API_KEY", null)
 }
+
+fun SharedPreferences.clearUsername() {
+    edit().remove("USERNAME").apply()
+}
+
+fun SharedPreferences.clearApiKey() {
+    edit().remove("API_KEY").apply()
+}
