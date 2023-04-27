@@ -4,7 +4,7 @@ import com.example.moviesvapp.model.Resource
 
 data class LoginUiState(
     val isLoggedIn: Boolean = false,
-    val userName: String = "",
+    val userName: String? = null,
     val loginStatus: Resource<Pair<String, String>> = Resource.Idle
 )
 

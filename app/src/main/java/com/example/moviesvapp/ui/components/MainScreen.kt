@@ -1,7 +1,7 @@
 package com.example.moviesvapp.ui.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerValue
@@ -31,6 +33,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
@@ -88,6 +92,7 @@ fun AppTopBar(onLogoutButtonClick: () -> Unit) {
     )
 }
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?) {
@@ -96,25 +101,37 @@ fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?
             Column(
                 modifier = Modifier
                     .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (username != null && lastLoginDate != null) {
-                    Text(text = "User: $username")
-                    Text(text = "Last Login: $lastLoginDate")
-                }
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Logo",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                NavigationDrawerItem(
-                    icon = { Icon(Icons.Default.ExitToApp, contentDescription = "Logout") },
-                    label = {
-                        Text(text = "User: $username")
-                    },
-                    selected = false,
-                    onClick = {},
-                    modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-                )
+                if (username != null && lastLoginDate != null) {
+                    NavigationDrawerItem(
+                        icon = { Icon(Icons.Default.AccountCircle, contentDescription = "User icon") },
+                        label = { Text(text = "User: $username") },
+                        selected = false,
+                        onClick = {},
+                        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    NavigationDrawerItem(
+                        icon = { Icon(Icons.Default.DateRange, contentDescription = "Last login date icon") },
+                        label = { Text(text = "Date: $lastLoginDate") },
+                        selected = false,
+                        onClick = {},
+                        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+
                 Button(
                     onClick = onLogout,
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),

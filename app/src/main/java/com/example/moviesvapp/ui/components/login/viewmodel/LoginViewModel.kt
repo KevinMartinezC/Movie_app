@@ -35,7 +35,9 @@ class LoginViewModel(context: Context) : ViewModel() {
 
     private val _uiState = MutableStateFlow(
         LoginUiState(
-            isLoggedIn = !sharedPreferences.getApiKey().isNullOrBlank().not()
+            isLoggedIn = !sharedPreferences.getApiKey().isNullOrBlank(),
+            userName = sharedPreferences.getUsername() // Add this line
+
         )
     )
     val uiState = _uiState.asStateFlow()
