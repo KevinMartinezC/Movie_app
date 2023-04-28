@@ -1,4 +1,4 @@
-package com.example.musicplayercompose.ui.theme
+package com.example.moviesvapp.ui.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily

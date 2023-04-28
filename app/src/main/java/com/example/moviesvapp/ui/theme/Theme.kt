@@ -1,4 +1,4 @@
-package com.example.musicplayercompose.ui.theme
+package com.example.moviesvapp.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -105,7 +105,6 @@ fun MyApplicationTheme(
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
-
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
