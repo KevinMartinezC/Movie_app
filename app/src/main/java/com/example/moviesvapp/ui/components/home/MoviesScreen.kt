@@ -18,7 +18,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,15 +28,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.moviesvapp.R
-import com.example.moviesvapp.ui.components.home.viewmodel.MoviesViewModel
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MoviesScreen(viewModel: MoviesViewModel) {
-
-    val movies by viewModel.movies.collectAsState()
-    val isLoading by viewModel.isLoading
+fun MoviesScreen(
+    uiState: MovieUiState,
+    searchMovies: (String) -> Unit
+) {
+    val movies = uiState.movies
+    val isLoading = uiState.isLoading
     var searchQuery by remember { mutableStateOf(TextFieldValue("")) }
 
     MyApplicationTheme {
@@ -57,7 +57,8 @@ fun MoviesScreen(viewModel: MoviesViewModel) {
                     trailingIcon = {
                         IconButton(
                             onClick = {
-                                viewModel.searchMovies(searchQuery.text) }
+                                searchMovies(searchQuery.text)
+                            }
                         ) {
                             Icon(
                                 Icons.Default.Search,
@@ -72,7 +73,7 @@ fun MoviesScreen(viewModel: MoviesViewModel) {
                 CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
             } else {
                 LazyColumn(
-                    modifier = Modifier.padding(bottom = 56.dp) // Add padding to avoid content being hidden behind the bottom bar
+                    modifier = Modifier.padding(bottom = 56.dp)
                 ) {
                     items(movies.size) { index ->
                         val movie = movies[index]

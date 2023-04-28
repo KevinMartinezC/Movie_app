@@ -42,7 +42,8 @@ fun MovieItem(movie: Movie) {
                 .weight(1f)
                 .align(Alignment.CenterVertically)
         ) {
-            Text(movie.title, style = MaterialTheme.typography.bodyLarge
+            Text(
+                movie.title, style = MaterialTheme.typography.bodyLarge
             )
             Text(movie.year)
         }

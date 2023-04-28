@@ -46,6 +46,7 @@ import com.example.moviesvapp.R
 import com.example.moviesvapp.ui.components.navigation.BottomBar
 import com.example.moviesvapp.ui.components.navigation.BottomNavGraph
 import com.example.moviesvapp.ui.components.navigation.BottomNavItem
+import com.example.moviesvapp.ui.theme.MyApplicationTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -56,7 +57,7 @@ fun MainScreen(onLogout: () -> Unit, username: String?, lastLoginDate: String?) 
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
-    MaterialTheme {
+    MyApplicationTheme {
         ModalNavigationDrawer(
             drawerContent = {
                 LogoutDrawer(

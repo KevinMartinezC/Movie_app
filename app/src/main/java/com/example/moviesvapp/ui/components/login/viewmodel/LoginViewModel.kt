@@ -22,7 +22,6 @@ import com.example.moviesvapp.model.saveUsername
 import com.example.moviesvapp.ui.components.login.LoginUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -49,7 +48,6 @@ class LoginViewModel(context: Context) : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun saveCredentials(username: String, apiKey: String) {
-        Log.wtf("MOVIS","${username}${apiKey}")
         sharedPreferences.saveUsername(username)
         sharedPreferences.saveApiKey(apiKey)
         sharedPreferences.saveLastLoginDate(getCurrentDateTime())
@@ -86,7 +84,6 @@ class LoginViewModel(context: Context) : ViewModel() {
             try {
                 val response = RetrofitInstance.omdbApi.searchMovies(apiKey, "marvel")
                 if (response.response == "True") {
-                    Log.wtf("MOVIS","${response.search}")
                     _uiState.update {
                         it.copy(
                             userName = username,
@@ -95,10 +92,16 @@ class LoginViewModel(context: Context) : ViewModel() {
 
                     }
                 } else {
-                    _uiState.update { it.copy(loginStatus =  Resource.Error("Invalid API key")) }
+                    _uiState.update { it.copy(loginStatus = Resource.Error("Invalid API key")) }
                 }
             } catch (e: Exception) {
-                _uiState.update { it.copy(loginStatus =  Resource.Error(e.message ?: "An error occurred")) }
+                _uiState.update {
+                    it.copy(
+                        loginStatus = Resource.Error(
+                            e.message ?: "An error occurred"
+                        )
+                    )
+                }
                 Log.d("LoginError", "Exception caught: ${e.message}")
             }
         }
