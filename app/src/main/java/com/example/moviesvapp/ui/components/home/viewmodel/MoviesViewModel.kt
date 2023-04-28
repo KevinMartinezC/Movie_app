@@ -41,6 +41,17 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
+    fun clearFavoriteMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            movieDatabase.movieDao().deleteAll()
+            withContext(Dispatchers.Main) {
+                _favoriteMoviesFlow.value = emptyList()
+                _uiState.update {
+                    it.copy(favoriteMovies = emptySet())
+                }
+            }
+        }
+    }
 
     private val _uiState = MutableStateFlow(
         MovieUiState(

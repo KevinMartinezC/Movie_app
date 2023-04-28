@@ -45,7 +45,7 @@ fun FavoriteMovieItem(favoriteMovie: FavoriteMovie) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(56.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         val painter = rememberAsyncImagePainter(model = favoriteMovie.poster)
