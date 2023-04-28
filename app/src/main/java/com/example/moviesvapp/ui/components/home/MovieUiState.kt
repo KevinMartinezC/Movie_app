@@ -4,5 +4,7 @@ import com.example.moviesvapp.model.Movie
 
 data class MovieUiState(
     val movies: List<Movie> = emptyList(),
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val favoriteMovies: Set<String> = emptySet()
 )
+

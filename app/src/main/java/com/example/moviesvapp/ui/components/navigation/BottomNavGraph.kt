@@ -29,11 +29,13 @@ fun BottomNavGraph(
         composable(route = BottomNavItem.Home.route) {
             MoviesScreen(
                 uiState = uiState,
-                searchMovies = moviesViewModel::searchMovies
+                searchMovies = moviesViewModel::searchMovies,
+                onToggleFavorite = { movie -> moviesViewModel.toggleFavorite(movie) }
+
             )
         }
         composable(route = BottomNavItem.Favorite.route) {
-            FavoriteScreen()
+            FavoriteScreen(favoriteMoviesFlow = moviesViewModel.favoriteMoviesFlow)
         }
     }
 }

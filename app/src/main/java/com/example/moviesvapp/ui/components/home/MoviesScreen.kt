@@ -12,7 +12,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -28,12 +27,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.moviesvapp.R
+import com.example.moviesvapp.model.Movie
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 @Composable
 fun MoviesScreen(
     uiState: MovieUiState,
-    searchMovies: (String) -> Unit
+    searchMovies: (String) -> Unit,
+    onToggleFavorite: (Movie) -> Unit
+
 ) {
     val movies = uiState.movies
     val isLoading = uiState.isLoading
@@ -76,7 +78,8 @@ fun MoviesScreen(
                 ) {
                     items(movies.size) { index ->
                         val movie = movies[index]
-                        MovieItem(movie)
+                        MovieItem(movie,favoriteMovies = uiState.favoriteMovies,
+                            onToggleFavorite = onToggleFavorite)
                         Divider()
                     }
                 }

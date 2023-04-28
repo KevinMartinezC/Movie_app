@@ -7,7 +7,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,8 +31,9 @@ import com.example.moviesvapp.model.Movie
 import com.example.moviesvapp.ui.components.detail.DetailScreen
 
 @Composable
-fun MovieItem(movie: Movie) {
+fun MovieItem(movie: Movie, favoriteMovies: Set<String>, onToggleFavorite: (Movie) -> Unit) {
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
+    val isFavorite = favoriteMovies.contains(movie.imdbID)
 
     Row(
         modifier = Modifier
@@ -58,6 +64,15 @@ fun MovieItem(movie: Movie) {
             )
 
         }
+        Icon(
+            imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,
+            contentDescription = stringResource(R.string.favorite_movie),
+            modifier = Modifier
+                .size(24.dp)
+                .clickable(onClick = {
+                    onToggleFavorite(movie)
+                })
+        )
     }
     if (openBottomSheet){
         DetailScreen(movie = movie, openBottomSheet = { openBottomSheet = !openBottomSheet })
