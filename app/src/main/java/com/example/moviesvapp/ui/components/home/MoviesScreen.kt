@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import com.example.moviesvapp.R
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoviesScreen(
     uiState: MovieUiState,

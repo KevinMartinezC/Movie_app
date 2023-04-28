@@ -13,10 +13,4 @@ data class Movie(
     val type: String,
     @SerializedName("Poster")
     val poster: String,
-    @SerializedName("Plot")
-    val plot: String ,
-    @SerializedName("Director")
-    val director: String
-
-
 )
