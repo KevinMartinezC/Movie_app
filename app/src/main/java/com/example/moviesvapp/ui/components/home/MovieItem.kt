@@ -31,7 +31,11 @@ import com.example.moviesvapp.model.Movie
 import com.example.moviesvapp.ui.components.detail.DetailScreen
 
 @Composable
-fun MovieItem(movie: Movie, favoriteMovies: Set<String>, onToggleFavorite: (Movie) -> Unit) {
+fun MovieItem(
+    movie: Movie,
+    favoriteMovies: Set<String>,
+    onToggleFavorite: (Movie) -> Unit
+) {
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
     val isFavorite = favoriteMovies.contains(movie.imdbID)
 
@@ -40,7 +44,8 @@ fun MovieItem(movie: Movie, favoriteMovies: Set<String>, onToggleFavorite: (Movi
             .fillMaxWidth()
             .padding(8.dp)
             .clickable(onClick = {
-                openBottomSheet = !openBottomSheet}),
+                openBottomSheet = !openBottomSheet
+            }),
 
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -74,7 +79,7 @@ fun MovieItem(movie: Movie, favoriteMovies: Set<String>, onToggleFavorite: (Movi
                 })
         )
     }
-    if (openBottomSheet){
+    if (openBottomSheet) {
         DetailScreen(movie = movie, openBottomSheet = { openBottomSheet = !openBottomSheet })
     }
 }
