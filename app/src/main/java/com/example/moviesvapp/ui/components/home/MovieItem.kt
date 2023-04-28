@@ -4,16 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.moviesvapp.R
 import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.ui.components.detail.DetailScreen
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieItem(movie: Movie) {
     var openBottomSheet by rememberSaveable { mutableStateOf(false) }
@@ -64,57 +60,9 @@ fun MovieItem(movie: Movie) {
         }
     }
     if (openBottomSheet){
-        val sheetState = rememberModalBottomSheetState()
-        ModalBottomSheet(
-            onDismissRequest = { openBottomSheet = false },
-            modifier = Modifier.fillMaxSize(),
-            sheetState = sheetState,
-            content = {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Image(
-                        painter = rememberAsyncImagePainter(model = movie.poster),
-                        contentDescription = stringResource(R.string.movie_poster),
-                        modifier = Modifier.height(200.dp),
-                        contentScale = ContentScale.Crop
-                    )
-
-                    Text(
-                        movie.type,
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.padding(top = 16.dp)
-                    )
-                    Text(movie.year, modifier = Modifier.padding(top = 8.dp))
-                }
-            }
-        )
+        DetailScreen(movie = movie, openBottomSheet = { openBottomSheet = !openBottomSheet })
     }
 }
 
 
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun DetailScreen(movie: Movie) {
-    val sheetState = rememberModalBottomSheetState()
-    ModalBottomSheet(
-        onDismissRequest = {},
-        modifier = Modifier.fillMaxSize(),
-        sheetState = sheetState,
-        content = {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Image(
-                    painter = rememberAsyncImagePainter(model = movie.poster),
-                    contentDescription = stringResource(R.string.movie_poster),
-                    modifier = Modifier.height(200.dp),
-                    contentScale = ContentScale.Crop
-                )
-                Text(
-                    movie.title,
-                    style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(top = 16.dp)
-                )
-                Text(movie.year, modifier = Modifier.padding(top = 8.dp))
-            }
-        }
-    )
-}

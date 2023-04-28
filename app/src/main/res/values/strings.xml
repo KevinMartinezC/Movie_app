@@ -10,4 +10,13 @@
     <string name="search_icon">Search Icon</string>
     <string name="search_movies">Search movies</string>
     <string name="login">Login</string>
+    <string name="category">Category:</string>
+    <string name="release_date">Movie Release:</string>
+    <string name="last_login_date_icon">Last login date icon</string>
+    <string name="user">User: %1$s</string>
+    <string name="user_icon">User icon</string>
+    <string name="logo">Logo</string>
+    <string name="date">Date: %1$s</string>
+    <string name="logout">Logout</string>
+    <string name="search">Search</string>
 </resources>

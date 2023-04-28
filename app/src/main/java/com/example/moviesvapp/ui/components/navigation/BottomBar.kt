@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.moviesvapp.ui.components.AddItem
 
 @Composable
 fun BottomBar(navController: NavHostController) {
