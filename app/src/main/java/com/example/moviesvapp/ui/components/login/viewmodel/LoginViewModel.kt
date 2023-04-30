@@ -20,6 +20,8 @@ import com.example.moviesvapp.model.saveApiKey
 import com.example.moviesvapp.model.saveLastLoginDate
 import com.example.moviesvapp.model.saveUsername
 import com.example.moviesvapp.ui.components.login.LoginUiState
+import com.example.moviesvapp.ui.components.login.viewmodel.Constants.PREFS_NAME
+import com.example.moviesvapp.ui.components.login.viewmodel.Constants.SEARCH_QUERY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,17 +32,17 @@ import kotlinx.coroutines.launch
 class LoginViewModel(context: Context) : ViewModel() {
 
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     private val _uiState = MutableStateFlow(
         LoginUiState(
             isLoggedIn = !sharedPreferences.getApiKey().isNullOrBlank(),
-            userName = sharedPreferences.getUsername() // Add this line
+            userName = sharedPreferences.getUsername()
 
         )
     )
-    val uiState = _uiState.asStateFlow()
 
+    val uiState = _uiState.asStateFlow()
 
     fun getLastLoginDate(): String? {
         return sharedPreferences.getLastLoginDate()
@@ -82,7 +84,7 @@ class LoginViewModel(context: Context) : ViewModel() {
         viewModelScope.launch {
             _uiState.update { it.copy(loginStatus = Resource.Loading) }
             try {
-                val response = RetrofitInstance.omdbApi.searchMovies(apiKey, "marvel")
+                val response = RetrofitInstance.omdbApi.searchMovies(apiKey, SEARCH_QUERY)
                 if (response.response == "True") {
                     _uiState.update {
                         it.copy(
@@ -106,4 +108,9 @@ class LoginViewModel(context: Context) : ViewModel() {
             }
         }
     }
+}
+
+object Constants {
+    const val PREFS_NAME = "MyPrefs"
+    const val SEARCH_QUERY = "marvel"
 }

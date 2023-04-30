@@ -7,14 +7,12 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.moviesvapp.model.Movie
-import com.example.moviesvapp.ui.components.MovieDetails
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(movie: Movie, openBottomSheet: () -> Unit) {
     val sheetState = rememberModalBottomSheetState()
-    ModalBottomSheet(
-        onDismissRequest = openBottomSheet,
+    ModalBottomSheet(onDismissRequest = openBottomSheet,
         modifier = Modifier.fillMaxSize(),
         sheetState = sheetState,
         content = {
@@ -26,3 +24,4 @@ fun DetailScreen(movie: Movie, openBottomSheet: () -> Unit) {
         }
     )
 }
+

@@ -1,4 +1,4 @@
-package com.example.moviesvapp.ui.components
+package com.example.moviesvapp.ui.components.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.moviesvapp.R
 
@@ -22,18 +22,18 @@ import com.example.moviesvapp.R
 fun MovieDetails(poster: String, type: String, year: String) {
     Column(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(dimensionResource(id = R.dimen.padding_16dp))
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             painter = rememberAsyncImagePainter(model = poster),
             contentDescription = stringResource(R.string.movie_poster),
-            modifier = Modifier.height(200.dp),
+            modifier = Modifier.height(dimensionResource(id = R.dimen.height_200dp)),
             contentScale = ContentScale.Crop
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.height_16dp)))
 
         Text(
             text = stringResource(R.string.category),
@@ -43,10 +43,10 @@ fun MovieDetails(poster: String, type: String, year: String) {
         Text(
             type,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_8dp))
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.height_16dp)))
 
         Text(
             text = stringResource(R.string.release_date),
@@ -56,7 +56,7 @@ fun MovieDetails(poster: String, type: String, year: String) {
         Text(
             year,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(top = dimensionResource(id = R.dimen.padding_8dp))
         )
     }
 }

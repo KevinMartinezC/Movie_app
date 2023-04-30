@@ -40,7 +40,6 @@ class MainActivity : ComponentActivity() {
                         onLogout = {
                             viewModel.clearData()
                             moviesViewModel.clearFavoriteMovies()
-
                         },
                         username = uiState.userName,
                         lastLoginDate = lastLoginDate

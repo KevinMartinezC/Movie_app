@@ -16,6 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.example.moviesvapp.model.database.FavoriteMovie
+import com.example.moviesvapp.ui.components.favorite.FavoriteScreenConstants.CARD_HEIGHT_FACTOR
+import com.example.moviesvapp.ui.components.favorite.FavoriteScreenConstants.CARD_WIDTH_FACTOR
+import com.example.moviesvapp.ui.components.favorite.FavoriteScreenConstants.PAGER_SNAP_DISTANCE
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 import kotlinx.coroutines.flow.StateFlow
 
@@ -28,13 +31,13 @@ fun FavoriteScreen(favoriteMoviesFlow: StateFlow<List<FavoriteMovie>>) {
         val pagerState = rememberPagerState()
         val fling = PagerDefaults.flingBehavior(
             state = pagerState,
-            pagerSnapDistance = PagerSnapDistance.atMost(4)
+            pagerSnapDistance = PagerSnapDistance.atMost(PAGER_SNAP_DISTANCE)
         )
 
         val screenWidth = LocalConfiguration.current.screenWidthDp.dp
         val screenHeight = LocalConfiguration.current.screenHeightDp.dp
-        val cardWidth = screenWidth * 0.7f
-        val cardHeight = screenHeight * 0.7f
+        val cardWidth = screenWidth * CARD_WIDTH_FACTOR
+        val cardHeight = screenHeight * CARD_HEIGHT_FACTOR
         val padding = (screenWidth - cardWidth) / 2
 
         Box(
@@ -60,3 +63,8 @@ fun FavoriteScreen(favoriteMoviesFlow: StateFlow<List<FavoriteMovie>>) {
     }
 }
 
+object FavoriteScreenConstants {
+    const val CARD_WIDTH_FACTOR = 0.7f
+    const val CARD_HEIGHT_FACTOR = 0.7f
+    const val PAGER_SNAP_DISTANCE = 4
+}

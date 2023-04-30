@@ -3,7 +3,8 @@ package com.example.moviesvapp.model
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface OmdbApi {
+interface
+OmdbApi {
     @GET("/")
     suspend fun searchMovies(
         @Query("apikey") apiKey: String,

@@ -20,4 +20,6 @@
     <string name="logout">Logout</string>
     <string name="search">Search</string>
     <string name="favorite_movie">favorite movie\n</string>
+    <string name="invalid_api_key">Invalid API key</string>
+    <string name="error_occurred">An error occurred</string>
 </resources>
