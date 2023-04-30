@@ -9,7 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.moviesvapp.R
+import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -23,4 +25,12 @@ fun AppTopBar(onLogoutButtonClick: () -> Unit) {
             }
         }
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AppTopBarPreview() {
+    MyApplicationTheme {
+        AppTopBar(onLogoutButtonClick = { })
+    }
 }

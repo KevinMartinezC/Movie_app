@@ -24,7 +24,13 @@ import androidx.compose.ui.unit.Dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.moviesvapp.R
 import com.example.moviesvapp.model.database.FavoriteMovie
-import com.example.moviesvapp.ui.components.MovieDetails
+import com.example.moviesvapp.ui.components.detail.MovieDetails
+import com.example.moviesvapp.ui.components.favorite.ScaleConstants.INITIAL_FRACTION_VALUE
+import com.example.moviesvapp.ui.components.favorite.ScaleConstants.LERP_START_WEIGHT
+import com.example.moviesvapp.ui.components.favorite.ScaleConstants.PAGE_OFFSET_LOWER_BOUND
+import com.example.moviesvapp.ui.components.favorite.ScaleConstants.PAGE_OFFSET_UPPER_BOUND
+import com.example.moviesvapp.ui.components.favorite.ScaleConstants.SCALE_START
+import com.example.moviesvapp.ui.components.favorite.ScaleConstants.SCALE_STOP
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
@@ -44,9 +50,12 @@ fun FavoriteMovieItem(
             ).absoluteValue
 
     val scale = lerp(
-        start = 0.8f,
-        stop = 1f,
-        fraction = 1f - pageOffset.coerceIn(0f, 1f)
+        start = SCALE_START,
+        stop = SCALE_STOP,
+        fraction = INITIAL_FRACTION_VALUE - pageOffset.coerceIn(
+            PAGE_OFFSET_LOWER_BOUND,
+            PAGE_OFFSET_UPPER_BOUND
+        )
     )
 
     Card(
@@ -83,5 +92,14 @@ fun FavoriteMovieItem(
 }
 
 fun lerp(start: Float, stop: Float, fraction: Float): Float {
-    return (1 - fraction) * start + fraction * stop
+    return (LERP_START_WEIGHT - fraction) * start + fraction * stop
+}
+
+object ScaleConstants {
+    const val SCALE_START = 0.8f
+    const val SCALE_STOP = 1f
+    const val PAGE_OFFSET_LOWER_BOUND = 0f
+    const val PAGE_OFFSET_UPPER_BOUND = 1f
+    const val INITIAL_FRACTION_VALUE = 1f
+    const val LERP_START_WEIGHT = 1
 }

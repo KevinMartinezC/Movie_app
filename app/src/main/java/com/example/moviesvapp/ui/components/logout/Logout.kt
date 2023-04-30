@@ -20,9 +20,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.example.moviesvapp.R
 
 @Composable
@@ -31,7 +31,7 @@ fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?
         Box(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
-                    .padding(16.dp),
+                    .padding(dimensionResource(id = R.dimen.padding_16dp)),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
@@ -41,7 +41,7 @@ fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.height_16dp)))
 
                 if (username != null && lastLoginDate != null) {
                     NavigationDrawerItem(
@@ -56,7 +56,9 @@ fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?
                         onClick = {},
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+
+                    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.height_8dp)))
+
                     NavigationDrawerItem(
                         icon = {
                             Icon(
