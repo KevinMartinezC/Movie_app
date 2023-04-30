@@ -33,7 +33,7 @@ fun MoviesScreenPreview() {
 
     MoviesScreen(
         uiState = sampleUiState,
-        searchMovies = { _ -> },
+        searchMovies = { _, _ -> },
         onToggleFavorite = { _ -> }
     )
 }

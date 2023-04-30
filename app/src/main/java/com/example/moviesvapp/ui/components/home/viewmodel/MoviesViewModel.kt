@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
+import com.example.moviesvapp.model.Filter
 import com.example.moviesvapp.model.Movie
 import com.example.moviesvapp.model.RetrofitInstance
 import com.example.moviesvapp.model.database.FavoriteMovie
@@ -76,13 +77,14 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
-    fun searchMovies(query: String) {
+    fun searchMovies(query: String, filter: Filter) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val apiKey = sharedPreferences.getApiKey()
                     ?: throw IllegalStateException("API Key not found")
                 val trimmedQuery = query.trim()
-                val response = omdbApi.searchMovies(apiKey, trimmedQuery)
+                val type = if (filter is Filter.All) null else filter.toString()
+                val response = omdbApi.searchMovies(apiKey, trimmedQuery, type)
                 withContext(Dispatchers.Main) {
                     if (response.response == "True") {
                         _uiState.update {
@@ -103,6 +105,7 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
+
 }
 
 

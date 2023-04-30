@@ -18,7 +18,7 @@ import com.example.moviesvapp.ui.theme.MyApplicationTheme
 @Composable
 fun AppTopBar(onLogoutButtonClick: () -> Unit) {
     TopAppBar(
-        title = { Text(stringResource(R.string.search)) },
+        title = { Text(stringResource(R.string.movies)) },
         actions = {
             IconButton(onClick = onLogoutButtonClick) {
                 Icon(Icons.Default.ExitToApp, contentDescription = (stringResource(R.string.logout)))

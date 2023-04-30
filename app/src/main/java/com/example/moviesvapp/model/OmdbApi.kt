@@ -8,6 +8,7 @@ OmdbApi {
     @GET("/")
     suspend fun searchMovies(
         @Query("apikey") apiKey: String,
-        @Query("s") query: String
+        @Query("s") query: String,
+        @Query("type") type: String? = null
     ): MoviesResponse
 }
