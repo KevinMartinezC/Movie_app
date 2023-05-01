@@ -1,4 +1,4 @@
-package com.example.moviesvapp.model
+package com.example.moviesvapp.data.omdbapi.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

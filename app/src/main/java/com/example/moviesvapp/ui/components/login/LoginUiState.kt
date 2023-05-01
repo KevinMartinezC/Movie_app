@@ -1,6 +1,6 @@
 package com.example.moviesvapp.ui.components.login
 
-import com.example.moviesvapp.model.Resource
+import com.example.moviesvapp.data.utils.Resource
 
 data class LoginUiState(
     val isLoggedIn: Boolean = false,

@@ -1,4 +1,4 @@
-package com.example.moviesvapp.model
+package com.example.moviesvapp.data.utils
 
 sealed class Resource<out T> {
     data class Success<out T>(val data: T) : Resource<T>()

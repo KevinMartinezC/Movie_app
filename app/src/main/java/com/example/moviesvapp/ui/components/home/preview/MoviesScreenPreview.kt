@@ -2,7 +2,7 @@ package com.example.moviesvapp.ui.components.home.preview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.data.omdbapi.model.Movie
 import com.example.moviesvapp.ui.components.home.MovieUiState
 import com.example.moviesvapp.ui.components.home.MoviesScreen
 

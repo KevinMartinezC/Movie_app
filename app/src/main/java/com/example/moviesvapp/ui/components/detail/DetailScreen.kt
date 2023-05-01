@@ -6,7 +6,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.data.omdbapi.model.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

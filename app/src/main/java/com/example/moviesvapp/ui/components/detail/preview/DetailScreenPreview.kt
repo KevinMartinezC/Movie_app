@@ -2,7 +2,7 @@ package com.example.moviesvapp.ui.components.detail.preview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.data.omdbapi.model.Movie
 import com.example.moviesvapp.ui.components.detail.DetailScreen
 
 @Preview(showBackground = true)

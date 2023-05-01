@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.moviesvapp.R
-import com.example.moviesvapp.model.database.FavoriteMovie
+import com.example.moviesvapp.data.local.model.FavoriteMovie
 import com.example.moviesvapp.ui.components.detail.MovieDetails
 import com.example.moviesvapp.ui.components.favorite.ScaleConstants.INITIAL_FRACTION_VALUE
 import com.example.moviesvapp.ui.components.favorite.ScaleConstants.LERP_START_WEIGHT

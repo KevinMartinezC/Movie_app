@@ -2,7 +2,7 @@ package com.example.moviesvapp.ui.components.favorite.preview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.moviesvapp.model.database.FavoriteMovie
+import com.example.moviesvapp.data.local.model.FavoriteMovie
 import com.example.moviesvapp.ui.components.favorite.FavoriteScreen
 import kotlinx.coroutines.flow.MutableStateFlow
 

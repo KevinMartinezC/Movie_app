@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.example.moviesvapp.model.database.FavoriteMovie
+import com.example.moviesvapp.data.local.model.FavoriteMovie
 import com.example.moviesvapp.ui.components.favorite.FavoriteScreenConstants.CARD_HEIGHT_FACTOR
 import com.example.moviesvapp.ui.components.favorite.FavoriteScreenConstants.CARD_WIDTH_FACTOR
 import com.example.moviesvapp.ui.components.favorite.FavoriteScreenConstants.PAGER_SNAP_DISTANCE

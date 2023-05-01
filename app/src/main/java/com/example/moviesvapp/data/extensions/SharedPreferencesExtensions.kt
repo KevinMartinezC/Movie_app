@@ -1,12 +1,12 @@
-package com.example.moviesvapp.model
+package com.example.moviesvapp.data.extensions
 
 import android.content.SharedPreferences
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.moviesvapp.model.SharedPreferencesExtensionsKeys.API_KEY
-import com.example.moviesvapp.model.SharedPreferencesExtensionsKeys.DATE_TIME_FORMAT
-import com.example.moviesvapp.model.SharedPreferencesExtensionsKeys.LAST_LOGIN_DATE
-import com.example.moviesvapp.model.SharedPreferencesExtensionsKeys.USER_NAME
+import com.example.moviesvapp.data.extensions.SharedPreferencesExtensionsKeys.API_KEY
+import com.example.moviesvapp.data.extensions.SharedPreferencesExtensionsKeys.DATE_TIME_FORMAT
+import com.example.moviesvapp.data.extensions.SharedPreferencesExtensionsKeys.LAST_LOGIN_DATE
+import com.example.moviesvapp.data.extensions.SharedPreferencesExtensionsKeys.USER_NAME
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

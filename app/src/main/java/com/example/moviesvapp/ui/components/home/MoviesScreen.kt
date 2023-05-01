@@ -32,8 +32,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.moviesvapp.R
-import com.example.moviesvapp.model.Filter
-import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.data.utils.Filter
+import com.example.moviesvapp.data.omdbapi.model.Movie
 import com.example.moviesvapp.ui.components.home.filter.FilterDropDownMenu
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
