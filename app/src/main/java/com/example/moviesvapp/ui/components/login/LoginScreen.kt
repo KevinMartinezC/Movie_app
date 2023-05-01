@@ -24,7 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import com.example.moviesvapp.R
-import com.example.moviesvapp.model.Resource
+import com.example.moviesvapp.data.utils.Resource
 
 @Composable
 fun LoginScreen(

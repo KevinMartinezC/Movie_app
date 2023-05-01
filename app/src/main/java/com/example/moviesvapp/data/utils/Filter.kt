@@ -1,4 +1,4 @@
-package com.example.moviesvapp.model
+package com.example.moviesvapp.data.utils
 
 sealed class Filter {
     object All : Filter()

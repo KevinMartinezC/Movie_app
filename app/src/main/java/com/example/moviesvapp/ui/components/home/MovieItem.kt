@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.moviesvapp.R
-import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.data.omdbapi.model.Movie
 import com.example.moviesvapp.ui.components.detail.DetailScreen
 
 @Composable

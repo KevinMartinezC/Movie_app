@@ -1,6 +1,6 @@
 package com.example.moviesvapp.ui.components.home
 
-import com.example.moviesvapp.model.Movie
+import com.example.moviesvapp.data.omdbapi.model.Movie
 
 data class MovieUiState(
     val movies: List<Movie> = emptyList(),

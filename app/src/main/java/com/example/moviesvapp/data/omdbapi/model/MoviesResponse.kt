@@ -1,4 +1,4 @@
-package com.example.moviesvapp.model
+package com.example.moviesvapp.data.omdbapi.model
 
 import com.google.gson.annotations.SerializedName
 

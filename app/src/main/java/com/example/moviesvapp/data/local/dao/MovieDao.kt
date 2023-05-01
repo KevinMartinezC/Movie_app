@@ -1,10 +1,11 @@
-package com.example.moviesvapp.model.database
+package com.example.moviesvapp.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.moviesvapp.data.local.model.FavoriteMovie
 import kotlinx.coroutines.flow.Flow
 
 @Dao
