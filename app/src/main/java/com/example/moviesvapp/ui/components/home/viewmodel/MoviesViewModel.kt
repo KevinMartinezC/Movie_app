@@ -47,6 +47,15 @@ class MoviesViewModel(context: Context) : ViewModel() {
         }
     }
 
+    private val _uiState = MutableStateFlow(
+        MovieUiState(
+            movies = emptyList(),
+            isLoading = false
+        )
+    )
+
+    val uiState = _uiState.asStateFlow()
+
     fun clearFavoriteMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             movieDatabase.movieDao().deleteAll()
@@ -58,15 +67,6 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
-
-    private val _uiState = MutableStateFlow(
-        MovieUiState(
-            movies = emptyList(),
-            isLoading = false
-        )
-    )
-
-    val uiState = _uiState.asStateFlow()
 
     fun toggleFavorite(movie: Movie) {
         viewModelScope.launch(Dispatchers.IO) {
