@@ -74,6 +74,7 @@ fun FavoriteMovieItem(
             contentScale = ContentScale.Crop
         )
     }
+
     if (openBottomSheet) {
         val sheetState = rememberModalBottomSheetState()
         ModalBottomSheet(

@@ -17,9 +17,9 @@ import com.example.moviesvapp.ui.components.home.viewmodel.MoviesViewModel
 fun BottomNavGraph(
     navController: NavHostController
 ) {
+
     val context = LocalContext.current
     val moviesViewModel = remember { MoviesViewModel(context) }
-
     val uiState by moviesViewModel.uiState.collectAsState()
 
     NavHost(
@@ -31,7 +31,6 @@ fun BottomNavGraph(
                 uiState = uiState,
                 searchMovies = moviesViewModel::searchMovies,
                 onToggleFavorite = { movie -> moviesViewModel.toggleFavorite(movie) }
-
             )
         }
         composable(route = BottomNavItem.Favorite.route) {

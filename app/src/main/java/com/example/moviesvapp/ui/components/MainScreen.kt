@@ -6,7 +6,12 @@ import com.example.moviesvapp.ui.components.navigation.drawer.MainScreenWithDraw
 import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 @Composable
-fun MainScreen(onLogout: () -> Unit, username: String?, lastLoginDate: String?) {
+fun MainScreen(
+    onLogout: () -> Unit,
+    username: String?,
+    lastLoginDate: String?
+) {
+
     val navController = rememberNavController()
 
     MyApplicationTheme {
