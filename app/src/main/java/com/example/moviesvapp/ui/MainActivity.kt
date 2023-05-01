@@ -15,6 +15,7 @@ import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 
 class MainActivity : ComponentActivity() {
+
     private lateinit var viewModel: LoginViewModel
     private lateinit var moviesViewModel: MoviesViewModel
 

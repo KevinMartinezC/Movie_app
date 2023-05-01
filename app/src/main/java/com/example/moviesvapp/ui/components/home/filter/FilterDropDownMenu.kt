@@ -29,7 +29,8 @@ import com.example.moviesvapp.data.utils.Filter
 
 @Composable
 fun FilterDropDownMenu(
-    selectedFilter: Filter, onFilterSelected: (Filter) -> Unit
+    selectedFilter: Filter,
+    onFilterSelected: (Filter) -> Unit
 ) {
     val filters = listOf(Filter.All, Filter.Movies, Filter.Series)
     var expanded by remember { mutableStateOf(false) }

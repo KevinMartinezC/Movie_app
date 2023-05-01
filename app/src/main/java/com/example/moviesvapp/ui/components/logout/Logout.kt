@@ -26,7 +26,12 @@ import androidx.compose.ui.res.stringResource
 import com.example.moviesvapp.R
 
 @Composable
-fun LogoutDrawer(onLogout: () -> Unit, username: String?, lastLoginDate: String?) {
+fun LogoutDrawer(
+    onLogout: () -> Unit,
+    username: String?,
+    lastLoginDate: String?
+) {
+
     ModalDrawerSheet {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(

@@ -39,7 +39,9 @@ import com.example.moviesvapp.ui.theme.MyApplicationTheme
 
 @Composable
 fun MoviesScreen(
-    uiState: MovieUiState, searchMovies: (String, Filter) -> Unit, onToggleFavorite: (Movie) -> Unit
+    uiState: MovieUiState,
+    searchMovies: (String, Filter) -> Unit,
+    onToggleFavorite: (Movie) -> Unit
 ) {
     val movies = uiState.movies
     val isLoading = uiState.isLoading
@@ -82,13 +84,14 @@ fun MoviesScreen(
                             )
                         }
                     })
+
                 Spacer(modifier = Modifier.height(8.dp))
 
                 FilterDropDownMenu(selectedFilter = selectedFilter, onFilterSelected = { filter ->
                     selectedFilter = filter
                 })
-
             }
+
             if (isLoading) {
                 CircularProgressIndicator(modifier = Modifier.wrapContentSize(Alignment.Center))
             } else {

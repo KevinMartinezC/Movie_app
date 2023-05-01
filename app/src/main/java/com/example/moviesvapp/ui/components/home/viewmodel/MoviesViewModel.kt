@@ -12,6 +12,10 @@ import com.example.moviesvapp.data.local.model.FavoriteMovie
 import com.example.moviesvapp.data.local.database.MovieDatabase
 import com.example.moviesvapp.data.extensions.getApiKey
 import com.example.moviesvapp.ui.components.home.MovieUiState
+import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.API_KEY_NOT_FOUND
+import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.DATABASE_NAME
+import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.RESPONSE_STATE
+import com.example.moviesvapp.ui.components.login.viewmodel.Constants.PREFS_NAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,11 +27,11 @@ class MoviesViewModel(context: Context) : ViewModel() {
 
     private val omdbApi = RetrofitInstance.omdbApi
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     private val movieDatabase = Room.databaseBuilder(
         context.applicationContext,
-        MovieDatabase::class.java, "movie-database"
+        MovieDatabase::class.java, DATABASE_NAME
     ).build()
 
     private val _favoriteMoviesFlow = MutableStateFlow<List<FavoriteMovie>>(emptyList())
@@ -42,6 +46,7 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
+
     fun clearFavoriteMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             movieDatabase.movieDao().deleteAll()
@@ -60,7 +65,9 @@ class MoviesViewModel(context: Context) : ViewModel() {
             isLoading = false
         )
     )
+
     val uiState = _uiState.asStateFlow()
+
     fun toggleFavorite(movie: Movie) {
         viewModelScope.launch(Dispatchers.IO) {
             val favoriteMovie = FavoriteMovie(
@@ -77,16 +84,17 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
+
     fun searchMovies(query: String, filter: Filter) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val apiKey = sharedPreferences.getApiKey()
-                    ?: throw IllegalStateException("API Key not found")
+                    ?: throw IllegalStateException(API_KEY_NOT_FOUND)
                 val trimmedQuery = query.trim()
                 val type = if (filter is Filter.All) null else filter.toString()
                 val response = omdbApi.searchMovies(apiKey, trimmedQuery, type)
                 withContext(Dispatchers.Main) {
-                    if (response.response == "True") {
+                    if (response.response == RESPONSE_STATE) {
                         _uiState.update {
                             it.copy(movies = response.search, isLoading = false)
                         }
@@ -105,8 +113,12 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
-
 }
 
+object ConstantMoviesModel{
+    const val DATABASE_NAME = "movie-database"
+    const val API_KEY_NOT_FOUND = "API Key not found"
+    const val RESPONSE_STATE = "True"
+}
 
 

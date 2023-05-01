@@ -19,9 +19,14 @@ import com.example.moviesvapp.data.extensions.getUsername
 import com.example.moviesvapp.data.extensions.saveApiKey
 import com.example.moviesvapp.data.extensions.saveLastLoginDate
 import com.example.moviesvapp.data.extensions.saveUsername
+import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.RESPONSE_STATE
 import com.example.moviesvapp.ui.components.login.LoginUiState
+import com.example.moviesvapp.ui.components.login.viewmodel.Constants.AN_ERROR_OCCURRED
+import com.example.moviesvapp.ui.components.login.viewmodel.Constants.EXCEPTION_CAUGHT_MESSAGE
+import com.example.moviesvapp.ui.components.login.viewmodel.Constants.INVALID_API_KEY
 import com.example.moviesvapp.ui.components.login.viewmodel.Constants.PREFS_NAME
 import com.example.moviesvapp.ui.components.login.viewmodel.Constants.SEARCH_QUERY
+import com.example.moviesvapp.ui.components.login.viewmodel.Constants.TAG_LOGIN_ERROR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -38,7 +43,6 @@ class LoginViewModel(context: Context) : ViewModel() {
         LoginUiState(
             isLoggedIn = !sharedPreferences.getApiKey().isNullOrBlank(),
             userName = sharedPreferences.getUsername()
-
         )
     )
 
@@ -85,26 +89,25 @@ class LoginViewModel(context: Context) : ViewModel() {
             _uiState.update { it.copy(loginStatus = Resource.Loading) }
             try {
                 val response = RetrofitInstance.omdbApi.searchMovies(apiKey, SEARCH_QUERY)
-                if (response.response == "True") {
+                if (response.response == RESPONSE_STATE) {
                     _uiState.update {
                         it.copy(
                             userName = username,
                             loginStatus = Resource.Success(Pair(username, apiKey))
                         )
-
                     }
                 } else {
-                    _uiState.update { it.copy(loginStatus = Resource.Error("Invalid API key")) }
+                    _uiState.update { it.copy(loginStatus = Resource.Error(INVALID_API_KEY)) }
                 }
             } catch (e: Exception) {
                 _uiState.update {
                     it.copy(
                         loginStatus = Resource.Error(
-                            e.message ?: "An error occurred"
+                            e.message ?: AN_ERROR_OCCURRED
                         )
                     )
                 }
-                Log.d("LoginError", "Exception caught: ${e.message}")
+                Log.d(TAG_LOGIN_ERROR, String.format(EXCEPTION_CAUGHT_MESSAGE, e.message))
             }
         }
     }
@@ -113,4 +116,9 @@ class LoginViewModel(context: Context) : ViewModel() {
 object Constants {
     const val PREFS_NAME = "MyPrefs"
     const val SEARCH_QUERY = "marvel"
+    const val INVALID_API_KEY = "Invalid API key"
+    const val AN_ERROR_OCCURRED = "An error occurred"
+    const val TAG_LOGIN_ERROR = "LoginError"
+    const val EXCEPTION_CAUGHT_MESSAGE = "Exception caught: %s"
+
 }

@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun BottomBar(navController: NavHostController) {
+
     val screens = listOf(
         BottomNavItem.Home,
         BottomNavItem.Favorite,
