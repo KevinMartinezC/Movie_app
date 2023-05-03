@@ -1,0 +1,56 @@
+[versions]
+navVersion = "2.5.3"
+lifecycleVersion = "2.6.1"
+roomVersion = "2.5.1"
+coreKtxVersion = "1.10.0"
+activityComposeVersion = "1.7.1"
+composeBomVersion = "2023.04.01"
+compose = "1.4.2"
+material3Version = "1.1.0-rc01"
+material3WindowSizeClassVersion = "1.0.1"
+materialVersion = "1.4.2"
+junitVersion = "4.13.2"
+androidTestExtJunitVersion = "1.1.5"
+espressoCoreVersion = "3.5.1"
+retrofitVersion = "2.9.0"
+converterGsonVersion = "2.9.0"
+coroutinesCoreVersion = "1.6.4"
+coroutinesAndroidVersion = "1.6.4"
+coilComposeVersion = "2.3.0"
+roomRuntimeVersion = "2.5.1"
+roomCompilerVersion = "2.5.1"
+roomKtxVersion = "2.5.1"
+
+[libraries]
+coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
+junit = { module = "junit:junit", version.ref = "junitVersion" }
+androidTestExtJunit = { module = "androidx.test.ext:junit", version.ref = "androidTestExtJunitVersion" }
+espressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
+activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
+composeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
+composeUi = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+composeUiGraphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "compose" }
+composeUiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+composeMaterial3 = { module = "androidx.compose.material3:material3", version.ref = "material3Version" }
+composeMaterial3WindowSizeClass = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "material3WindowSizeClassVersion" }
+composeMaterial = { module = "androidx.compose.material:material", version.ref = "materialVersion" }
+composeUiTestJunit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+composeUiTestManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+converterGson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGsonVersion" }
+coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesCoreVersion" }
+coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutinesAndroidVersion" }
+lifecycleViewModelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
+lifecycleViewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleVersion" }
+lifecycleLiveDataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleVersion" }
+lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
+coilCompose = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
+navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navVersion" }
+roomRuntime = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "roomCompilerVersion" }
+roomKtx = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
+
+[plugins]
+
+[bundles]
