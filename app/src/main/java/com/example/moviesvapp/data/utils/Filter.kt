@@ -13,3 +13,8 @@ sealed class Filter {
         }
     }
 }
+
+enum class Filter2(val display:String){
+    ALL("ALL"),
+    MOVIES("Movies")
+}

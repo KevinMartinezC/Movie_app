@@ -21,7 +21,10 @@ fun AppTopBar(onLogoutButtonClick: () -> Unit) {
         title = { Text(stringResource(R.string.movies)) },
         actions = {
             IconButton(onClick = onLogoutButtonClick) {
-                Icon(Icons.Default.ExitToApp, contentDescription = (stringResource(R.string.logout)))
+                Icon(
+                    imageVector = Icons.Default.ExitToApp,
+                    contentDescription = (stringResource(R.string.logout))
+                )
             }
         }
     )

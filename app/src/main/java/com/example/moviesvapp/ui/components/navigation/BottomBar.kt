@@ -11,15 +11,11 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun BottomBar(navController: NavHostController) {
 
-    val screens = listOf(
-        BottomNavItem.Home,
-        BottomNavItem.Favorite,
-    )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
     NavigationBar {
-        screens.forEach { screen ->
+        BottomNavItem.ALL.forEach { screen ->
             AddItem(
                 screen = screen,
                 currentDestination = currentDestination,

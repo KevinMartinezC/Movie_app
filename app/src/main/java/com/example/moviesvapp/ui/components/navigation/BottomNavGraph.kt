@@ -19,7 +19,7 @@ fun BottomNavGraph(
 ) {
 
     val context = LocalContext.current
-    val moviesViewModel = remember { MoviesViewModel(context) }
+    val moviesViewModel = MoviesViewModel(context)
     val uiState by moviesViewModel.uiState.collectAsState()
 
     NavHost(

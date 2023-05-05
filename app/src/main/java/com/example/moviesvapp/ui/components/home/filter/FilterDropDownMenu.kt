@@ -47,12 +47,15 @@ fun FilterDropDownMenu(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 filters.forEach { filter ->
-                    DropdownMenuItem(onClick = {
-                        onFilterSelected(filter)
-                        expanded = false
-                    }, text = {
-                        Text(text = filter.toString())
-                    })
+                    DropdownMenuItem(
+                        onClick = {
+                            onFilterSelected(filter)
+                            expanded = false
+                        },
+                        text = {
+                            Text(text = filter.toString())
+                        }
+                    )
                 }
             }
             TextButton(

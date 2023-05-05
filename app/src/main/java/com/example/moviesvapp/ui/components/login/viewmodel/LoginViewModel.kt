@@ -3,12 +3,9 @@ package com.example.moviesvapp.ui.components.login.viewmodel
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviesvapp.data.utils.Resource
-import com.example.moviesvapp.data.omdbapi.network.RetrofitInstance
 import com.example.moviesvapp.data.extensions.clearApiKey
 import com.example.moviesvapp.data.extensions.clearLastLoginDate
 import com.example.moviesvapp.data.extensions.clearUsername
@@ -19,14 +16,14 @@ import com.example.moviesvapp.data.extensions.getUsername
 import com.example.moviesvapp.data.extensions.saveApiKey
 import com.example.moviesvapp.data.extensions.saveLastLoginDate
 import com.example.moviesvapp.data.extensions.saveUsername
-import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.RESPONSE_STATE
+import com.example.moviesvapp.data.omdbapi.network.RetrofitInstance
+import com.example.moviesvapp.data.utils.Resource
+import com.example.moviesvapp.ui.components.home.viewmodel.MoviesViewModel.Companion.RESPONSE_STATE
 import com.example.moviesvapp.ui.components.login.LoginUiState
 import com.example.moviesvapp.ui.components.login.viewmodel.Constants.AN_ERROR_OCCURRED
-import com.example.moviesvapp.ui.components.login.viewmodel.Constants.EXCEPTION_CAUGHT_MESSAGE
 import com.example.moviesvapp.ui.components.login.viewmodel.Constants.INVALID_API_KEY
 import com.example.moviesvapp.ui.components.login.viewmodel.Constants.PREFS_NAME
 import com.example.moviesvapp.ui.components.login.viewmodel.Constants.SEARCH_QUERY
-import com.example.moviesvapp.ui.components.login.viewmodel.Constants.TAG_LOGIN_ERROR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -107,7 +104,6 @@ class LoginViewModel(context: Context) : ViewModel() {
                         )
                     )
                 }
-                Log.d(TAG_LOGIN_ERROR, String.format(EXCEPTION_CAUGHT_MESSAGE, e.message))
             }
         }
     }

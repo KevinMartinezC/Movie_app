@@ -48,7 +48,7 @@ fun LogoutDrawer(
 
                 Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.height_16dp)))
 
-                if (username != null && lastLoginDate != null) {
+                if (username != null && lastLoginDate != null) {//REMOVE THE B
                     NavigationDrawerItem(
                         icon = {
                             Icon(

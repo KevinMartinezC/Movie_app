@@ -16,7 +16,7 @@ import com.example.moviesvapp.ui.components.navigation.BottomNavGraph
 import com.example.moviesvapp.ui.components.topbar.AppTopBar
 import kotlinx.coroutines.launch
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")//REMOVE
 @Composable
 fun MainScreenWithDrawer(
     onLogout: () -> Unit,

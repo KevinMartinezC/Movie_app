@@ -8,7 +8,7 @@ import com.example.moviesvapp.ui.theme.MyApplicationTheme
 @Composable
 fun MainScreen(
     onLogout: () -> Unit,
-    username: String?,
+    username: String?,//Remove it to use empty string
     lastLoginDate: String?
 ) {
 

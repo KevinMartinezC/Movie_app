@@ -30,7 +30,7 @@ fun RowScope.AddItem(
                 tint = MaterialTheme.colorScheme.primary
             )
         },
-        selected = currentDestination?.hierarchy?.any {
+        selected = currentDestination?.hierarchy?.any { //Add it at the top as remember
             it.route == screen.route
         } == true,
         onClick = {

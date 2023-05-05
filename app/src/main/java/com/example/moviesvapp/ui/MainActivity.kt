@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MyApplicationTheme {
-                val lastLoginDate = viewModel.getLastLoginDate()
+                val lastLoginDate = viewModel.getLastLoginDate()//add it in a State
                 val uiState by viewModel.uiState.collectAsState()
 
                 if (!uiState.isLoggedIn) {

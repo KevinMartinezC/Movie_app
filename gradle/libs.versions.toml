@@ -54,3 +54,7 @@ roomKtx = { module = "androidx.room:room-ktx", version.ref = "roomKtxVersion" }
 [plugins]
 
 [bundles]
+room = [
+    "roomRuntime",
+    "roomKtx"
+]

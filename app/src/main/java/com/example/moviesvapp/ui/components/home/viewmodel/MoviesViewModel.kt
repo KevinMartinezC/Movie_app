@@ -12,9 +12,6 @@ import com.example.moviesvapp.data.local.model.FavoriteMovie
 import com.example.moviesvapp.data.local.database.MovieDatabase
 import com.example.moviesvapp.data.extensions.getApiKey
 import com.example.moviesvapp.ui.components.home.MovieUiState
-import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.API_KEY_NOT_FOUND
-import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.DATABASE_NAME
-import com.example.moviesvapp.ui.components.home.viewmodel.ConstantMoviesModel.RESPONSE_STATE
 import com.example.moviesvapp.ui.components.login.viewmodel.Constants.PREFS_NAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,9 +22,14 @@ import kotlinx.coroutines.withContext
 
 class MoviesViewModel(context: Context) : ViewModel() {
 
-    private val omdbApi = RetrofitInstance.omdbApi
-    private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    private val omdbApi by lazy { RetrofitInstance.omdbApi }
+    private val sharedPreferences: SharedPreferences by lazy {
+        context.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+    }
+
 
     private val movieDatabase = Room.databaseBuilder(
         context.applicationContext,
@@ -93,7 +95,7 @@ class MoviesViewModel(context: Context) : ViewModel() {
                 val trimmedQuery = query.trim()
                 val type = if (filter is Filter.All) null else filter.toString()
                 val response = omdbApi.searchMovies(apiKey, trimmedQuery, type)
-                withContext(Dispatchers.Main) {
+                withContext(Dispatchers.Main) {// change by IO
                     if (response.response == RESPONSE_STATE) {
                         _uiState.update {
                             it.copy(movies = response.search, isLoading = false)
@@ -113,12 +115,12 @@ class MoviesViewModel(context: Context) : ViewModel() {
             }
         }
     }
+    companion object {
+        const val DATABASE_NAME = "movie-database"
+        const val API_KEY_NOT_FOUND = "API Key not found"
+        const val RESPONSE_STATE = "True"
+    }
 }
 
-object ConstantMoviesModel{
-    const val DATABASE_NAME = "movie-database"
-    const val API_KEY_NOT_FOUND = "API Key not found"
-    const val RESPONSE_STATE = "True"
-}
 
 

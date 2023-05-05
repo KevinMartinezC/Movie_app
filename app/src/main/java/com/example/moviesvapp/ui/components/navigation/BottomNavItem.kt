@@ -20,4 +20,11 @@ sealed class BottomNavItem(
         title = "Favorite",
         icon = Icons.Default.Star
     )
+    companion object{
+        val ALL : List<BottomNavItem>
+            get() = listOf(
+            Home,
+            Favorite,
+        )
+    }
 }

@@ -2,6 +2,7 @@ package com.example.moviesvapp.data.omdbapi.model
 
 import com.google.gson.annotations.SerializedName
 
+
 data class Movie(
     @SerializedName("Title")
     val title: String,

@@ -25,13 +25,15 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.moviesvapp.R
 import com.example.moviesvapp.data.local.model.FavoriteMovie
 import com.example.moviesvapp.ui.components.detail.MovieDetails
-import com.example.moviesvapp.ui.components.favorite.ScaleConstants.INITIAL_FRACTION_VALUE
-import com.example.moviesvapp.ui.components.favorite.ScaleConstants.LERP_START_WEIGHT
-import com.example.moviesvapp.ui.components.favorite.ScaleConstants.PAGE_OFFSET_LOWER_BOUND
-import com.example.moviesvapp.ui.components.favorite.ScaleConstants.PAGE_OFFSET_UPPER_BOUND
-import com.example.moviesvapp.ui.components.favorite.ScaleConstants.SCALE_START
-import com.example.moviesvapp.ui.components.favorite.ScaleConstants.SCALE_STOP
 import kotlin.math.absoluteValue
+
+
+private const val SCALE_START = 0.8f
+private const val SCALE_STOP = 1f
+private const val PAGE_OFFSET_LOWER_BOUND = 0f
+private const val PAGE_OFFSET_UPPER_BOUND = 1f
+private const val INITIAL_FRACTION_VALUE = 1f
+private const val LERP_START_WEIGHT = 1
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -96,11 +98,3 @@ fun lerp(start: Float, stop: Float, fraction: Float): Float {
     return (LERP_START_WEIGHT - fraction) * start + fraction * stop
 }
 
-object ScaleConstants {
-    const val SCALE_START = 0.8f
-    const val SCALE_STOP = 1f
-    const val PAGE_OFFSET_LOWER_BOUND = 0f
-    const val PAGE_OFFSET_UPPER_BOUND = 1f
-    const val INITIAL_FRACTION_VALUE = 1f
-    const val LERP_START_WEIGHT = 1
-}

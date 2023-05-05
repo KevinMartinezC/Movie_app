@@ -77,7 +77,6 @@ dependencies {
     implementation(libs.lifecycleRuntimeKtx)
     implementation(libs.coilCompose)
     implementation(libs.navigationCompose)
-    implementation(libs.roomRuntime)
-    implementation(libs.roomKtx)
+    implementation(libs.bundles.room)
     ksp(libs.roomCompiler)
 }

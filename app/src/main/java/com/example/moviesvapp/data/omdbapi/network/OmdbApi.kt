@@ -7,8 +7,13 @@ import retrofit2.http.Query
 interface OmdbApi {
     @GET("/")
     suspend fun searchMovies(
-        @Query("apikey") apiKey: String,
+        @Query(API_KEY) apiKey: String,
         @Query("s") query: String,
         @Query("type") type: String? = null
     ): MoviesResponse
+
+    companion object{
+        const val API_KEY = "apikey"
+    }
 }
+
